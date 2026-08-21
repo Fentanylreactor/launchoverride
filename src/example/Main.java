@@ -16,7 +16,7 @@ public class Main extends Mod {
         
         @Override
         public int getMaxLaunchSize(Block block) {
-            return block.size + Schematics.maxLoadoutSchematicPad * 3;
+            return block.size + this.maxLoadoutSchematicPad * 3;
         }
     }
 }
