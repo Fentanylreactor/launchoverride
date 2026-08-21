@@ -11,7 +11,7 @@ author: "Ketan"
 main: "loadoutsizeincreaser.Main"
 
 #the mod description as seen in the mod dialog
-description: "Bump Core schematic size a bit."
+description: "Bump Core schematic size a bit, increasing it from core size +10 to core size +15."
 
 #the mod version
 version: 1.0
