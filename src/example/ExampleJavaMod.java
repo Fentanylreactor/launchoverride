@@ -1,33 +1,22 @@
-package example;
+package loadoutsizeincreaser;
 
-import arc.*;
-import arc.util.*;
-import mindustry.game.EventType.*;
-import mindustry.mod.*;
-import mindustry.ui.dialogs.*;
+import mindustry.Vars;
+import mindustry.game.Schematics;
+import mindustry.mod.Mod;
+import mindustry.world.*;
 
-public class ExampleJavaMod extends Mod{
+public class Main extends Mod {
 
-    public ExampleJavaMod(){
-        Log.info("Loaded ExampleJavaMod constructor.");
-
-        //listen for game load event
-        Events.on(ClientLoadEvent.class, e -> {
-            //show dialog upon startup
-            Time.runTask(10f, () -> {
-                BaseDialog dialog = new BaseDialog("frog");
-                dialog.cont.add("behold").row();
-                //mod sprites are prefixed with the mod name (this mod is called 'example-java-mod' in its config)
-                dialog.cont.image(Core.atlas.find("example-java-mod-frog")).pad(20f).row();
-                dialog.cont.button("I see", dialog::hide).size(100f, 50f);
-                dialog.show();
-            });
-        });
+    public Main() {
+        Vars.schematics = new CustomSchematics();
+        Vars.schematics.load();
     }
 
-    @Override
-    public void loadContent(){
-        Log.info("Loading some example content.");
+    public static class CustomSchematics extends Schematics {
+        
+        @Override
+        public int getMaxLaunchSize(Block block) {
+            return block.size + maxLoadoutSchematicPad * 3;
+        }
     }
-
 }
